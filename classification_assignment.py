@@ -32,18 +32,20 @@ def cnn(num_classes):
         data_augmentation,
 
         layers.Conv2D(32, (3, 3), padding='same', activation='relu'),
+        layers.BatchNormalization(),
         layers.Conv2D(32, (3, 3), padding='same', activation='relu'),
         layers.MaxPooling2D((2, 2)),
-        #layers.Dropout(0.2),
+        layers.BatchNormalization(),
 
         layers.Conv2D(64, (3, 3), padding='same', activation='relu'),
+        layers.BatchNormalization(),
         layers.Conv2D(64, (3, 3), padding='same', activation='relu'),
         layers.MaxPooling2D((2, 2)),
-        #layers.Dropout(0.3),
+        layers.BatchNormalization(),
 
         layers.Conv2D(128, (3, 3), padding='same', activation='relu'),
         layers.MaxPooling2D((2, 2)),
-        #layers.Dropout(0.35),
+        layers.BatchNormalization(),
 
         layers.Flatten(),
         layers.Dense(128, activation='relu'),
