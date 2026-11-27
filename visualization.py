@@ -1,7 +1,9 @@
 import matplotlib.pyplot as plt
 import random
 import numpy as np
-from classification_assignment import x_train, y_train, x_test, y_test, model, data_labels
+import tensorflow as tf
+from tensorflow.keras.datasets import cifar10
+from classification_assignment import data_labels
 
 def visualize(imgs, labels, preds=None):
     fig, axes = plt.subplots(2, 5, figsize=(12, 5))
@@ -22,7 +24,11 @@ def visualize(imgs, labels, preds=None):
     plt.show()
 
 if __name__ == "__main__":
+    (x_train, y_train), (x_test, y_test) = cifar10.load_data()
     visualize(x_train, y_train)
+
+    model_path = "cifar10_cnn.model.keras"
+    model = tf.keras.models.load_model(model_path)
 
     pred_classes = np.argmax(model.predict(x_test), axis=1)
     visualize(x_test, y_test, preds=pred_classes)
