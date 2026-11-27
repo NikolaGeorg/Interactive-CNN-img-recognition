@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
-from classification_assignment import data_labels, model
+import tensorflow as tf
+from classification_assignment import data_labels
 
 def extract_center_square(frame):
     h, w, _ = frame.shape
@@ -14,6 +15,8 @@ def extract_center_square(frame):
 
 if __name__ == "__main__":
     cap = cv2.VideoCapture(0)
+    model_path = "cifar10_cnn.model.keras"
+    model = tf.keras.models.load_model(model_path)
 
     if cap.isOpened():
         while(cv2.waitKey(30) != ord('q')):
